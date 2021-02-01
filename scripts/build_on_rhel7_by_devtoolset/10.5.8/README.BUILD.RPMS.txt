@@ -39,6 +39,7 @@ gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
 # ## ls -la /root/rpmbuild/SOURCES/MariaDB-10.5.8.tar.gz 
 # ## -rw-r--r-- 1 root root 72663348 Nov 10 18:03 /root/rpmbuild/SOURCES/MariaDB-10.5.8.tar.gz
 # ## replace mariadb-10.5.8.tar.gz with tar.gz source
+# rm -f /root/rpmbuild/SOURCES/MariaDB-10.5.8.tar.gz
 # cp mariadb-10.5.8.tar.gz /root/rpmbuild/SOURCES/MariaDB-10.5.8.tar.gz
 # cd /root/rpmbuild/SPECS
 # sed -i 's/\-DRPM=centos73/\-DMARIADB_MACHINE_TYPE=ppc64le \-DRPM=el7 \-DWITH_READLINE=ON \-DENABLED_LOCAL_INFILE=ON \-DWITH_EMBEDDED_SERVER=ON \-DWITH_SSL=system \-DWITH_ZLIB=system \-DWITH_PCRE=bundle \-DPLUGIN_PERFSCHEMA=YES \-DWITH_JEMALLOC=system \-DWITH_NUMA=ON \-DCMAKE_C_FLAGS="\-O3 \-mcpu=native \-mtune=native \-mcmodel=large" \-DCMAKE_CXX_FLAGS="\-O3 \-mcpu=native \-mtune=native \-mcmodel=large" /g' MariaDB.spec
