@@ -2,10 +2,10 @@
 Based on MariaDB Community Source，build and verify  tarball/ RPM binaries for Power (Linux ppc64/ppc64le), release binaries for popular versions.
 
 # 说明
-本仓库从社区下载MariaDB主流源码版本，维护MariaDB on Power上经过优化、验证的编译脚本， 并通过Tags/Releases中提供编译好的二进制RPM或者TARBALL 软件包.
+本仓库从社区下载MariaDB主流源码版本，维护MariaDB on Power上经过优化、验证的编译脚本， 并在Releases/Tags中提供编译好的二进制RPM或者TARBALL 软件包.
  
 # 示例
-* [scripts/src/10.3.27/GET_SOURCE.links.sh](https://github.com/DBres4Power/MariaDB_binaries/blob/main/scripts/src/10.3.27/GET_SOURCE.links.sh) ，内容是从何处下载的MariaDB 10.3.27源码
+* [scripts/src/10.3.27/GET_SOURCE.links.sh](https://github.com/DBres4Power/MariaDB_binaries/blob/main/scripts/src/10.3.27/GET_SOURCE.links.sh) ，内容是下载MariaDB 10.3.27源码的链接
  
 * [scripts/build_on_rhel7_by_devtoolset/10.3.27/README.BUILD.RPMS.txt](https://github.com/DBres4Power/MariaDB_binaries/blob/build/scripts/build_on_rhel7_by_devtoolset/10.3.27/README.BUILD.RPMS.txt) 在RedHat/CentOS 7下采用devtoolset gcc编译MariaDB 10.3.27二进制RPM包的过程
 
