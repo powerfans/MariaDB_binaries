@@ -1,4 +1,4 @@
-Build on K1 Power9 Linux, RedHat 7.6 (Kernel 4.14.0-115.8.1.el7a.ppc64le) with devtoolset-7.
+Build on K1 Power9 Linux, RedHat 7.6 (Kernel 4.14.0-115.8.1.el7a.ppc64le) with advance-toolchain-at11.0
 
 ### 1. About Build ENV #########################################################################################
 
@@ -23,13 +23,14 @@ Install dependencies
        libzstd-devel snappy-devel numactl-devel
 # ## yum install nmon perf dstat #useful tools for performance monitoring
 
-Install devtoolset-7
-# yum install devtoolset-7
-source /opt/rh/devtoolset-7/enable
+Install advance-toolchain-at11.0
+# yum install advance-toolchain-at11.0
+# export PATH=/opt/at11.0/bin:$PATH
 # type gcc
-gcc is /opt/rh/devtoolset-7/root/usr/bin/gcc
-# gcc --version 
-gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
+gcc is /opt/at11.0/bin/gcc
+[root@db1 src]# gcc --version
+gcc (GCC) 7.4.1 20191016 (Advance-Toolchain-at11.0) [revision 277075]
+
 
 ### Default %{optflags} is not optimized.
 # rpm -Uvh MariaDB-10.3.27-1.el7.centos.src.rpm
@@ -39,6 +40,7 @@ gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
 # ## ls -la /root/rpmbuild/SOURCES/MariaDB-10.3.27.tar.gz 
 # ## -rw-r--r-- 1 root root 72663348 Nov 10 18:03 /root/rpmbuild/SOURCES/MariaDB-10.3.27.tar.gz
 # ## replace mariadb-10.3.27.tar.gz with tar.gz source
+# rm -f /root/rpmbuild/SOURCES/MariaDB-10.3.27.tar.gz
 # cp mariadb-10.3.27.tar.gz /root/rpmbuild/SOURCES/MariaDB-10.3.27.tar.gz
 # cd /root/rpmbuild/SPECS
 # sed -i 's/\-DRPM=centos74/\-DMARIADB_MACHINE_TYPE=ppc64le \-DRPM=el7 \-DWITH_READLINE=ON \-DENABLED_LOCAL_INFILE=ON \-DWITH_EMBEDDED_SERVER=ON \-DWITH_SSL=system \-DWITH_ZLIB=system \-DWITH_PCRE=bundle \-DPLUGIN_PERFSCHEMA=YES \-DWITH_JEMALLOC=system \-DWITH_NUMA=ON \-DCMAKE_C_FLAGS="\-O3 \-mcpu=native \-mtune=native \-mcmodel=large" \-DCMAKE_CXX_FLAGS="\-O3 \-mcpu=native \-mtune=native \-mcmodel=large" /g' MariaDB.spec

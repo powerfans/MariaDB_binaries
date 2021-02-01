@@ -1,4 +1,4 @@
-Build on K1 Power9 Linux, RedHat 7.6 (Kernel 4.14.0-115.8.1.el7a.ppc64le) with devtoolset-7.
+Build on K1 Power9 Linux, RedHat 7.6 (Kernel 4.14.0-115.8.1.el7a.ppc64le) with advance-toolchain-at11.0
 
 ### 1. About Build ENV #########################################################################################
 
@@ -12,7 +12,7 @@ Model name:            POWER9 (architected), altivec supported
 # uname -m
 ppc64le
 
-### 2. Build mysql    ##########################################################################################
+### 2. Build mariadb  ##########################################################################################
 
 Install dependencies
 # yum -y install bison boost-devel coreutils checkpolicy binutils cmake gcc-c++ gcc glibc-devel make \
@@ -20,21 +20,20 @@ Install dependencies
        jemalloc-devel libaio-devel cracklib-devel zlib-devel xz-devel systemd-devel java-1.8.0-openjdk \
        java-1.8.0-openjdk-headless Judy-devel krb5-devel libxml2-devel libxml2 unixODBC-devel unixODBC \
        openssl-devel pam-devel pkgconfig readline-devel ruby policycoreutils-python thrift-devel \
-       libzstd-devel snappy-devel numactl-devel pcre2 pcre2-devel
-
+       libzstd-devel snappy-devel numactl-devel 
 # ## yum install nmon perf dstat #useful tools for performance monitoring
 
 
-Install devtoolset-7
-# yum install devtoolset-7
-source /opt/rh/devtoolset-7/enable
+Install advance-toolchain-at11.0
+# yum install advance-toolchain-at11.0
+# export PATH=/opt/at11.0/bin:$PATH
 # type gcc
-gcc is /opt/rh/devtoolset-7/root/usr/bin/gcc
-# gcc --version 
-gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
+gcc is /opt/at11.0/bin/gcc
+[root@db1 src]# gcc --version
+gcc (GCC) 7.4.1 20191016 (Advance-Toolchain-at11.0) [revision 277075]
 
-# tar zxf mariadb-10.5.8.tar.gz
-# cd mariadb-10.5.8/
+# tar zxf mariadb-10.3.27.tar.gz
+# cd mariadb-10.3.27/
 # mkdir -p build; cd build
 # ##cmake -LAH ..  
 # cmake .. \
@@ -44,7 +43,7 @@ gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
   -DCMAKE_C_FLAGS="-O3 -mcpu=native -mtune=native -mcmodel=large" \
   -DCMAKE_CXX_COMPILER=`which g++` \
   -DCMAKE_CXX_FLAGS="-O3 -mcpu=native -mtune=native -mcmodel=large" \
-  -DCMAKE_INSTALL_PREFIX=/opt/mariadb/10.5.8 \
+  -DCMAKE_INSTALL_PREFIX=/opt/mariadb_at/10.3.27 \
   -DCMAKE_LINKER=`which gcc` \
   -DCMAKE_AR=`which gcc-ar` \
   -DCMAKE_NM=`which gcc-nm` \
@@ -63,5 +62,4 @@ gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
 # make -j 32 VERBOSE=1 && make install
 
 
-# cd /opt/mariadb
-# tar zcf MariaDB-server-10.5.8-1.el7.ppc64le.bin.tar.gz ./10.5.8
+# cd /opt/mariadb_at && tar zcf MariaDB-server-10.3.27-1.el7.ppc64le.at11gcc.bin.tar.gz ./10.3.27
